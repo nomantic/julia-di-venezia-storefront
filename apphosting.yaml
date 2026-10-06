@@ -10,13 +10,13 @@ env:
   # IMPORTANT: Replace both values below with your live Vendure backend URL
   # once it is deployed. Until then the deployed storefront will show errors.
   - variable: VENDURE_SHOP_API_URL
-    value: https://api.juliatest.com/shop-api
+    value: https://readonlydemo.vendure.io/shop-api
     availability:
       - BUILD
       - RUNTIME
 
   - variable: NEXT_PUBLIC_VENDURE_SHOP_API_URL
-    value: https://api.juliatest.com/shop-api
+    value: https://readonlydemo.vendure.io/shop-api
     availability:
       - BUILD
       - RUNTIME
@@ -38,7 +38,7 @@ env:
   # It will look like: https://<backend-id>.<region>.hosted.app
   # or your custom domain if you set one.
   - variable: NEXT_PUBLIC_SITE_URL
-    value: https://vendurestorefront.web.app
+    value: https://julia-di-venezia-storefront-592025266185.europe-west4.run.app
     availability:
       - BUILD
       - RUNTIME
