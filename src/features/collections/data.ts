@@ -8,5 +8,6 @@ export async function getTopCollections(locale: string) {
     cacheTag(`collections-${locale}`);
 
     const result = await query(GetTopCollectionsQuery, undefined, {languageCode: locale});
-    return result.data.collections.items;
+    return result.data?.collections?.items ?? [];
 }
+

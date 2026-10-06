@@ -12,5 +12,10 @@ export async function getActiveChannel() {
     cacheLife('hours');
 
     const result = await query(GetActiveChannelQuery);
-    return result.data.activeChannel;
+    return result.data?.activeChannel ?? {
+        defaultCurrencyCode: 'EUR',
+        defaultLanguageCode: 'en',
+        token: '__default_channel__',
+    };
 }
+

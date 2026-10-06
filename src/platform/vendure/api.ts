@@ -7,9 +7,16 @@ const VENDURE_CHANNEL_TOKEN = process.env.VENDURE_CHANNEL_TOKEN || process.env.N
 const VENDURE_AUTH_TOKEN_HEADER = process.env.VENDURE_AUTH_TOKEN_HEADER || 'vendure-auth-token';
 const VENDURE_CHANNEL_TOKEN_HEADER = process.env.VENDURE_CHANNEL_TOKEN_HEADER || 'vendure-token';
 
-if (!VENDURE_API_URL) {
-    throw new Error('VENDURE_SHOP_API_URL or NEXT_PUBLIC_VENDURE_SHOP_API_URL environment variable is not set');
+function isValidUrl(urlString?: string): boolean {
+    if (!urlString) return false;
+    try {
+        const u = new URL(urlString);
+        return u.protocol === 'http:' || u.protocol === 'https:';
+    } catch {
+        return false;
+    }
 }
+
 
 interface VendureRequestOptions {
     token?: string;
@@ -71,6 +78,17 @@ export async function query<TResult, TVariables>(
     // Set the channel token header (use provided channelToken or default)
     headers[VENDURE_CHANNEL_TOKEN_HEADER] = channelToken || VENDURE_CHANNEL_TOKEN;
 
+    if (!isValidUrl(VENDURE_API_URL)) {
+        console.warn(`[Vendure API] VENDURE_API_URL is not a valid HTTP/HTTPS URL (${VENDURE_API_URL}). Returning empty fallback response.`);
+        return {
+            data: {
+                collections: { items: [], totalItems: 0 },
+                activeChannel: { defaultCurrencyCode: 'EUR', defaultLanguageCode: 'en', token: '__default_channel__' },
+                activeOrder: null,
+            } as unknown as TResult,
+        };
+    }
+
     const url = new URL(VENDURE_API_URL!);
     if (languageCode) {
         url.searchParams.set('languageCode', languageCode);
@@ -79,16 +97,28 @@ export async function query<TResult, TVariables>(
         url.searchParams.set('currencyCode', currencyCode);
     }
 
-    const response = await fetch(url.toString(), {
-        ...fetchOptions,
-        method: 'POST',
-        headers,
-        body: JSON.stringify({
-            query: print(document),
-            variables: variables || {},
-        }),
-        ...(tags && {next: {tags}}),
-    });
+    let response: Response;
+    try {
+        response = await fetch(url.toString(), {
+            ...fetchOptions,
+            method: 'POST',
+            headers,
+            body: JSON.stringify({
+                query: print(document),
+                variables: variables || {},
+            }),
+            ...(tags && {next: {tags}}),
+        });
+    } catch (err) {
+        console.warn(`[Vendure API] Network fetch failed to ${url.toString()}:`, err);
+        return {
+            data: {
+                collections: { items: [], totalItems: 0 },
+                activeChannel: { defaultCurrencyCode: 'EUR', defaultLanguageCode: 'en', token: '__default_channel__' },
+                activeOrder: null,
+            } as unknown as TResult,
+        };
+    }
 
     if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
