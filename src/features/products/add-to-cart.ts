@@ -3,6 +3,7 @@
 import {getLocale, getTranslations} from 'next-intl/server';
 import {updateTag} from 'next/cache';
 import {AddToCartMutation} from '@/features/cart/graphql';
+import {TransitionOrderToStateMutation} from '@/features/checkout/graphql';
 import {getActiveCurrencyCode} from '@/features/currency/currency-server';
 import {mutate} from '@/platform/vendure/api';
 import {setAuthToken} from '@/platform/vendure/auth-token';
@@ -13,13 +14,27 @@ export async function addToCart(variantId: string, quantity = 1) {
     const t = await getTranslations({locale, namespace: 'Errors'});
 
     try {
-        const result = await mutate(
+        let result = await mutate(
             AddToCartMutation,
             {variantId, quantity},
             {useAuthToken: true, currencyCode},
         );
 
         if (result.token) await setAuthToken(result.token);
+
+        if (result.data.addItemToOrder.__typename === 'OrderModificationError') {
+            await mutate(
+                TransitionOrderToStateMutation,
+                {state: 'AddingItems'},
+                {useAuthToken: true}
+            );
+            result = await mutate(
+                AddToCartMutation,
+                {variantId, quantity},
+                {useAuthToken: true, currencyCode},
+            );
+            if (result.token) await setAuthToken(result.token);
+        }
 
         if (result.data.addItemToOrder.__typename === 'Order') {
             updateTag('cart');

@@ -17,6 +17,11 @@ const nextConfig: NextConfig = {
             },
             {
                 hostname: 'localhost'
+            },
+            {
+                // Supabase S3 storage — product images & assets in production
+                hostname: 'queahwwpaohxjwrkuijx.storage.supabase.co',
+                protocol: 'https',
             }
         ],
     }

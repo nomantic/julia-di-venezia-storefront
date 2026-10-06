@@ -1,0 +1,66 @@
+runConfig:
+  concurrency: 80
+  cpu: 1
+  memoryMiB: 512
+  maxInstances: 10
+  minInstances: 0
+
+env:
+  # ── Vendure backend ──────────────────────────────────────────────────────
+  # IMPORTANT: Replace both values below with your live Vendure backend URL
+  # once it is deployed. Until then the deployed storefront will show errors.
+  - variable: VENDURE_SHOP_API_URL
+    value: REPLACE_WITH_PRODUCTION_VENDURE_URL/shop-api
+    availability:
+      - BUILD
+      - RUNTIME
+
+  - variable: NEXT_PUBLIC_VENDURE_SHOP_API_URL
+    value: REPLACE_WITH_PRODUCTION_VENDURE_URL/shop-api
+    availability:
+      - BUILD
+      - RUNTIME
+
+  - variable: VENDURE_CHANNEL_TOKEN
+    value: __default_channel__
+    availability:
+      - BUILD
+      - RUNTIME
+
+  - variable: NEXT_PUBLIC_VENDURE_CHANNEL_TOKEN
+    value: __default_channel__
+    availability:
+      - BUILD
+      - RUNTIME
+
+  # ── Site identity ────────────────────────────────────────────────────────
+  # Replace with your actual Firebase App Hosting domain once you know it.
+  # It will look like: https://<backend-id>.<region>.hosted.app
+  # or your custom domain if you set one.
+  - variable: NEXT_PUBLIC_SITE_URL
+    value: REPLACE_WITH_FIREBASE_DOMAIN
+    availability:
+      - BUILD
+      - RUNTIME
+
+  - variable: NEXT_PUBLIC_SITE_NAME
+    value: Julia di venezia
+    availability:
+      - BUILD
+      - RUNTIME
+
+  # ── Stripe (publishable key — safe to commit) ────────────────────────────
+  - variable: NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY
+    value: pk_live_51UNVfaEnyJt4Xq2R4hFATnB1Hyowz3dmkv5GEhBUNyt6FpAXjpoPvaXDv40zD0ceKee3TbkA8iI7AeE2x1fa3wFb00yDW5AslM
+    availability:
+      - BUILD
+      - RUNTIME
+
+  # ── Revalidation secret ──────────────────────────────────────────────────
+  # Store this in Firebase Secret Manager for production:
+  #   firebase apphosting:secrets:set REVALIDATION_SECRET
+  # Then replace `value:` with `secret: REVALIDATION_SECRET`
+  - variable: REVALIDATION_SECRET
+    value: julia_di_venezia_revalidation_secret_2026
+    availability:
+      - RUNTIME

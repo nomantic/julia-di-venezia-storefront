@@ -7,6 +7,7 @@ import { useCheckout } from '../checkout-provider';
 import { placeOrder as placeOrderAction } from '../actions';
 import { Price } from '@/features/pricing/price';
 import {useTranslations} from 'next-intl';
+import { StripePayment } from '../../components/stripe-payment';
 
 interface ReviewStepProps {
   onEditStep: (step: 'contact' | 'shipping' | 'delivery' | 'payment') => void;
@@ -159,15 +160,22 @@ export default function ReviewStep({ onEditStep }: ReviewStepProps) {
         </div>
       </div>
 
-      <Button
-        onClick={handlePlaceOrder}
-        disabled={loading || !order.shippingAddress || !order.shippingLines?.length || !selectedPaymentMethodCode}
-        size="lg"
-        className="w-full"
-      >
-        {loading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
-        {t('placeOrder')}
-      </Button>
+      {selectedPaymentMethodCode === 'stripe' ? (
+        <div className="pt-4 border-t space-y-3">
+          <h4 className="font-medium text-base">Payment Details</h4>
+          <StripePayment orderCode={order.code} onCancel={() => onEditStep('payment')} />
+        </div>
+      ) : (
+        <Button
+          onClick={handlePlaceOrder}
+          disabled={loading || !order.shippingAddress || !order.shippingLines?.length || !selectedPaymentMethodCode}
+          size="lg"
+          className="w-full"
+        >
+          {loading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
+          {t('placeOrder')}
+        </Button>
+      )}
 
       {(!order.shippingAddress || !order.shippingLines?.length || !selectedPaymentMethodCode) && (
         <p className="text-sm text-destructive text-center">

@@ -6,6 +6,7 @@ import {CreateCustomerAddressMutation} from '@/features/account/graphql';
 import {revalidatePath, updateTag} from 'next/cache';
 import {redirect} from '@/platform/i18n/navigation';
 import {getLocale} from 'next-intl/server';
+import {getAuthToken} from '@/platform/vendure/auth-token';
 
 interface AddressInput {
     fullName: string;
@@ -85,6 +86,14 @@ export async function transitionToArrangingPayment() {
 
     if (result.data.transitionOrderToState?.__typename === 'OrderStateTransitionError') {
         const errorResult = result.data.transitionOrderToState;
+        // If order is already in ArrangingPayment, this is expected and idempotent
+        if (
+            errorResult.fromState === 'ArrangingPayment' ||
+            errorResult.transitionError?.includes('from "ArrangingPayment" to "ArrangingPayment"') ||
+            errorResult.message?.includes('from "ArrangingPayment" to "ArrangingPayment"')
+        ) {
+            return;
+        }
         throw new Error(
             `Failed to transition order state: ${errorResult.errorCode} - ${errorResult.message}`
         );
@@ -130,6 +139,56 @@ export async function placeOrder(paymentMethodCode: string) {
     const orderCode = result.data.addPaymentToOrder.code;
 
     // Update the cart tag to immediately invalidate cached cart data
+    updateTag('cart');
+    updateTag('active-order');
+
+    const locale = await getLocale();
+    redirect({href: `/order-confirmation/${orderCode}`, locale});
+}
+
+export async function createStripePaymentIntent(): Promise<string> {
+    await transitionToArrangingPayment();
+    const token = await getAuthToken();
+    const apiUrl = process.env.VENDURE_SHOP_API_URL || process.env.NEXT_PUBLIC_VENDURE_SHOP_API_URL || 'http://localhost:3000/shop-api';
+    const channelToken = process.env.VENDURE_CHANNEL_TOKEN || process.env.NEXT_PUBLIC_VENDURE_CHANNEL_TOKEN || '__default_channel__';
+
+    const response = await fetch(apiUrl, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'vendure-token': channelToken,
+            ...(token ? {
+                'Authorization': `Bearer ${token}`,
+                'vendure-auth-token': token,
+            } : {}),
+        },
+        body: JSON.stringify({
+            query: `
+                mutation CreateStripePaymentIntent {
+                    createStripePaymentIntent
+                }
+            `,
+        }),
+    });
+
+    if (!response.ok) {
+        throw new Error(`HTTP error ${response.status}`);
+    }
+
+    const result = await response.json();
+    if (result.errors && result.errors.length) {
+        throw new Error(result.errors[0].message);
+    }
+
+    const clientSecret = result.data?.createStripePaymentIntent;
+    if (!clientSecret) {
+        throw new Error('No client secret returned from Stripe payment intent mutation');
+    }
+
+    return clientSecret;
+}
+
+export async function completeStripeOrder(orderCode: string) {
     updateTag('cart');
     updateTag('active-order');
 

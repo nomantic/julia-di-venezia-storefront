@@ -59,10 +59,25 @@ export async function OrderConfirmation({paramsPromise}: OrderConfirmationProps)
     const locale = await getRouteLocale();
     const t = await getTranslations({locale, namespace: 'OrderConfirmation'});
 
-    const {data} = await query(GetOrderByCodeQuery, {code}, {useAuthToken: true});
-    const order = data.orderByCode;
+    let order = null;
+    let lastError = null;
+
+    // Retry to allow asynchronous Stripe webhook a moment to finalize order settlement
+    for (let attempt = 0; attempt < 5; attempt++) {
+        try {
+            const {data} = await query(GetOrderByCodeQuery, {code}, {useAuthToken: true});
+            if (data?.orderByCode) {
+                order = data.orderByCode;
+                break;
+            }
+        } catch (err: any) {
+            lastError = err;
+            await new Promise((resolve) => setTimeout(resolve, 800));
+        }
+    }
 
     if (!order) {
+        if (lastError) throw lastError;
         notFound();
     }
 
