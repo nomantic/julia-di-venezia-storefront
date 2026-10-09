@@ -26,6 +26,10 @@ const nextConfig: NextConfig = {
             },
             {
                 hostname: '15.160.209.193',
+                port: '8080',
+            },
+            {
+                hostname: '15.160.209.193',
             }
         ],
     }

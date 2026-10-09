@@ -10,13 +10,13 @@ env:
   # IMPORTANT: Replace both values below with your live Vendure backend URL
   # once it is deployed. Until then the deployed storefront will show errors.
   - variable: VENDURE_SHOP_API_URL
-    value: https://julia-di-venezia-backend--vendurestorefront.europe-west4.hosted.app/shop-api
+    value: http://15.160.209.193:8080/shop-api
     availability:
       - BUILD
       - RUNTIME
 
   - variable: NEXT_PUBLIC_VENDURE_SHOP_API_URL
-    value: https://julia-di-venezia-backend--vendurestorefront.europe-west4.hosted.app/shop-api
+    value: http://15.160.209.193:8080/shop-api
     availability:
       - BUILD
       - RUNTIME
