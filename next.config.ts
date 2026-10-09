@@ -23,6 +23,9 @@ const nextConfig: NextConfig = {
                 // Supabase S3 storage — product images & assets in production
                 hostname: 'queahwwpaohxjwrkuijx.storage.supabase.co',
                 protocol: 'https',
+            },
+            {
+                hostname: '15.160.209.193',
             }
         ],
     }
