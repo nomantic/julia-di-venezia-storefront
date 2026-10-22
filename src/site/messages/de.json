@@ -2,22 +2,22 @@
   "NotFound": {
     "title": "Seite nicht gefunden",
     "message": "Die gesuchte Seite existiert nicht, wurde verschoben oder ist vorübergehend nicht verfügbar.",
-    "goHome": "Zur Startseite",
-    "browseProducts": "Produkte durchsuchen",
-    "popularCollections": "Beliebte Kategorien"
+    "goHome": "Zurück zur Galerie",
+    "browseProducts": "Alle Kunstwerke ansehen",
+    "popularCollections": "Beliebte Kollektionen"
   },
   "Footer": {
-    "description": "Ein moderner, Headless-E-Commerce-Shop, erstellt mit Vendure und Next.js. Schnell, flexibel und produktionsbereit.",
-    "categories": "Kategorien",
-    "customer": "Kunde",
-    "shopAll": "Alle Produkte",
+    "description": "Originalgemälde, verträumte botanische Illustrationen und Kunstdrucke, handgefertigt mit Liebe und inspiriert vom venezianischen Licht.",
+    "categories": "Kollektionen",
+    "customer": "Kundenservice",
+    "shopAll": "Alle Kunstwerke",
     "orders": "Bestellungen",
-    "account": "Konto",
-    "vendure": "Vendure",
-    "github": "GitHub",
-    "documentation": "Dokumentation",
-    "sourceCode": "Quellcode",
-    "copyright": "Vendure Store. Alle Rechte vorbehalten.",
-    "poweredBy": "Powered by"
+    "account": "Mein Konto",
+    "vendure": "Über die Künstlerin",
+    "github": "Instagram",
+    "documentation": "Sammler-Leitfaden",
+    "sourceCode": "Studio-Journal",
+    "copyright": "Julia di Venezia. Alle Rechte vorbehalten.",
+    "poweredBy": "Erstellt mit"
   }
 }

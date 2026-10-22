@@ -15,7 +15,7 @@ export function ProductCarousel({title, products, preloadFirstProduct}: ProductC
     return (
         <section className="py-12 md:py-16">
             <div className="container mx-auto px-4">
-                <h2 className="text-3xl md:text-4xl font-bold mb-8">{title}</h2>
+                <h2 className="font-serif text-3xl sm:text-4xl font-normal tracking-tight text-foreground mb-8">{title}</h2>
                 <Carousel
                     opts={{
                         align: "start",

@@ -2,9 +2,9 @@
   "Navigation": {
     "openMenu": "Open menu",
     "menu": "Menu",
-    "searchProducts": "Search products...",
-    "shopAll": "Shop All",
-    "collections": "Collections",
+    "searchProducts": "Search gallery & artwork...",
+    "shopAll": "All Artworks",
+    "collections": "Art Collections",
     "account": "Account",
     "profile": "Profile",
     "orders": "Orders",

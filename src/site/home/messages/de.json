@@ -1,28 +1,29 @@
 {
   "Hero": {
-    "title": "Entdecke hochwertige",
-    "titleHighlight": "Produkte",
-    "subtitle": "Hochwertige Produkte zu außergewöhnlichen Preisen. Kostenloser Versand ab 50 €.",
-    "shopNow": "Jetzt einkaufen",
-    "viewCollections": "Kategorien ansehen"
+    "badge": "Handgefertigt in Venedig • Originalkunst & Kunstdrucke",
+    "title": "Kunst, die die Seele",
+    "titleHighlight": "berührt",
+    "subtitle": "Originalgemälde, verträumte botanische Illustrationen und Museums-Kunstdrucke, die Wärme, Poesie und venezianische Romantik in Ihr Zuhause bringen.",
+    "shopNow": "Galerie entdecken",
+    "viewCollections": "Kollektionen ansehen"
   },
   "Home": {
-    "pageTitle": "Ihr One-Stop-Shop",
-    "description": "Entdecken Sie hochwertige Produkte zu wettbewerbsfähigen Preisen. Jetzt einkaufen und die besten Angebote für Elektronik, Mode, Haushaltswaren und mehr finden.",
-    "ogDescription": "Entdecken Sie hochwertige Produkte zu wettbewerbsfähigen Preisen. Jetzt die besten Angebote sichern.",
-    "whyShopWithUs": "Warum bei uns einkaufen",
+    "pageTitle": "Originalgemälde & Kunstdrucke",
+    "description": "Entdecken Sie Originalkunstwerke, romantische Illustrationen und Museums-Kunstdrucke von Julia di Venezia. Mit Leidenschaft in Venedig handgefertigt.",
+    "ogDescription": "Originalgemälde und Kunstdrucke von Julia di Venezia. Zeitlose Romantik und künstlerische Schönheit für Ihr Zuhause.",
+    "whyShopWithUs": "Das Atelier-Erlebnis",
     "features": {
       "highQuality": {
-        "title": "Hohe Qualität",
-        "description": "Sorgfältig ausgewählte Premiumprodukte für Sie"
+        "title": "Museumsqualität",
+        "description": "Archivfeste Pigmentfarben auf 100% Baumwoll-Künstlerpapier und Leinwand, geschaffen für Generationen."
       },
       "bestPrices": {
-        "title": "Beste Preise",
-        "description": "Wettbewerbsfähige Preise für alle unsere Produkte"
+        "title": "Mit Liebe handgefertigt",
+        "description": "Jedes Original und jeder limitierte Druck wird persönlich geprüft, signiert und mit Echtheitszertifikat geliefert."
       },
       "fastDelivery": {
-        "title": "Schnelle Lieferung",
-        "description": "Schneller und zuverlässiger Versand weltweit"
+        "title": "Sicherer weltweiter Versand",
+        "description": "Spezielle Schutzverpackung für Kunstwerke und versicherter Versand, damit Ihre Kunst perfekt bei Ihnen ankommt."
       }
     }
   }

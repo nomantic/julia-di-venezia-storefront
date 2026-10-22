@@ -1,28 +1,29 @@
 {
   "Hero": {
-    "title": "Discover Quality",
-    "titleHighlight": "Products",
-    "subtitle": "Premium products, exceptional prices. Free shipping on orders over $50.",
-    "shopNow": "Shop Now",
+    "badge": "Handcrafted in Venice • Original Artwork & Prints",
+    "title": "Art That Whispers to the",
+    "titleHighlight": "Soul",
+    "subtitle": "Original paintings, dreamy botanical illustrations, and museum-grade fine art prints crafted to bring warmth, poetry, and Venetian romance into your sanctuary.",
+    "shopNow": "Explore The Gallery",
     "viewCollections": "View Collections"
   },
   "Home": {
-    "pageTitle": "Your One-Stop Shop",
-    "description": "Discover high-quality products at competitive prices. Shop now for the best deals on electronics, fashion, home goods, and more.",
-    "ogDescription": "Discover high-quality products at competitive prices. Shop now for the best deals.",
-    "whyShopWithUs": "Why Shop With Us",
+    "pageTitle": "Original Paintings & Fine Art Prints",
+    "description": "Discover original artwork, romantic illustrations, and museum-grade fine art prints by Julia di Venezia. Handcrafted with passion in Venice.",
+    "ogDescription": "Original paintings and fine art prints by Julia di Venezia. Bring timeless romance and artistic beauty into your home.",
+    "whyShopWithUs": "The Atelier Experience",
     "features": {
       "highQuality": {
-        "title": "High Quality",
-        "description": "Premium products carefully selected for you"
+        "title": "Museum-Grade Quality",
+        "description": "Archival pigment inks on 100% cotton fine art paper and linen canvas, designed to preserve every brushstroke for generations."
       },
       "bestPrices": {
-        "title": "Best Prices",
-        "description": "Competitive pricing on all our products"
+        "title": "Handcrafted with Love",
+        "description": "Each original painting and limited print is hand-inspected, signed, and accompanied by a Certificate of Authenticity."
       },
       "fastDelivery": {
-        "title": "Fast Delivery",
-        "description": "Quick and reliable shipping worldwide"
+        "title": "Safe Worldwide Delivery",
+        "description": "Custom rigid art packaging and insured global courier delivery ensuring your artwork arrives in perfect gallery condition."
       }
     }
   }

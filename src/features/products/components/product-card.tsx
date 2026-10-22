@@ -18,30 +18,30 @@ export function ProductCard({product: productProp, preload}: ProductCardProps) {
     return (
         <Link
             href={`/product/${product.slug}`}
-            className="group block bg-card rounded-xl overflow-hidden border border-border hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
+            className="group block bg-card rounded-2xl overflow-hidden border border-border/80 hover:border-primary/40 hover:shadow-xl hover:shadow-primary/5 hover:-translate-y-1.5 transition-all duration-500"
         >
-            <div className="aspect-square relative bg-muted overflow-hidden">
+            <div className="aspect-square relative bg-secondary/30 overflow-hidden">
                 {product.productAsset ? (
                     <Image
                         src={product.productAsset.preview}
                         alt={product.productName}
                         fill
                         preload={preload}
-                        className="object-cover group-hover:scale-105 group-hover:opacity-90 transition-all duration-500"
+                        className="object-cover group-hover:scale-105 group-hover:opacity-95 transition-all duration-700 ease-out"
                         sizes="(max-width: 640px) calc(100vw - 2rem), (max-width: 1024px) 50vw, (max-width: 1280px) 33vw, 25vw"
                     />
                 ) : (
-                    <div className="w-full h-full flex items-center justify-center text-muted-foreground">
+                    <div className="w-full h-full flex items-center justify-center text-muted-foreground font-serif italic text-sm">
                         {t('noImage')}
                     </div>
                 )}
             </div>
-            <div className="p-4 space-y-2">
-                <h3 className="font-medium leading-snug line-clamp-2 group-hover:text-primary transition-colors">
+            <div className="p-5 space-y-2.5">
+                <h3 className="font-serif text-base sm:text-lg font-normal leading-snug line-clamp-2 group-hover:text-primary transition-colors">
                     {product.productName}
                 </h3>
-                <Suspense fallback={<div className="h-8 w-36 rounded bg-muted"></div>}>
-                    <p className="text-lg font-bold tracking-tight">
+                <Suspense fallback={<div className="h-6 w-28 rounded bg-muted"></div>}>
+                    <p className="text-base sm:text-lg font-semibold tracking-tight text-foreground/90">
                         {product.priceWithTax.__typename === 'PriceRange' ? (
                             product.priceWithTax.min !== product.priceWithTax.max ? (
                                 <>

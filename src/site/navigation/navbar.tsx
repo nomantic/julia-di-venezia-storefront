@@ -1,4 +1,4 @@
-import Image from "next/image";
+import {BrandLogo} from "@/components/brand-logo";
 import {NavigationLink} from '@/site/navigation/navigation-link';
 import {NavbarCollections} from '@/site/navigation/navbar/navbar-collections';
 import {NavbarCart} from '@/site/navigation/navbar/navbar-cart';
@@ -14,15 +14,15 @@ import {SearchInputSkeleton} from '@/site/navigation/skeletons/search-input-skel
 
 export function Navbar() {
     return (
-        <header className="fixed top-0 left-0 right-0 z-50 border-b backdrop-blur-md bg-background/80">
+        <header className="fixed top-0 left-0 right-0 z-50 border-b border-border/80 backdrop-blur-md bg-background/85 shadow-2xs">
             <div className="container mx-auto px-4">
-                <div className="flex items-center justify-between h-16">
-                    <div className="flex items-center gap-8">
+                <div className="flex items-center justify-between h-16 sm:h-20">
+                    <div className="flex items-center gap-6 lg:gap-8">
                         <Suspense>
                             <MobileNavWrapper />
                         </Suspense>
-                        <NavigationLink href="/" className="text-xl font-bold">
-                            <Image src="/vendure.svg" alt="Vendure" width={40} height={27} className="h-6 w-auto dark:invert" />
+                        <NavigationLink href="/" className="inline-block transition-opacity hover:opacity-90">
+                            <BrandLogo size="md" />
                         </NavigationLink>
                         <nav className="hidden md:flex items-center gap-6">
                             <Suspense>

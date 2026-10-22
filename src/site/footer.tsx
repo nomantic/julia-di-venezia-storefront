@@ -1,7 +1,7 @@
 import {getRouteLocale} from '@/platform/i18n/server';
 import {cacheLife, cacheTag} from 'next/cache';
 import {getTopCollections} from '@/features/collections/data';
-import Image from "next/image";
+import {BrandLogo} from "@/components/brand-logo";
 import {NavigationLink} from '@/site/navigation/navigation-link';
 import {getTranslations} from 'next-intl/server';
 
@@ -33,12 +33,12 @@ export async function Footer() {
     const collections = await getTopCollections(locale);
 
     return (
-        <footer className="border-t border-border mt-auto">
-            <div className="container mx-auto px-4 py-12">
+        <footer className="border-t border-border mt-auto bg-muted/20">
+            <div className="container mx-auto px-4 py-14">
                 <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-                    <div className="md:col-span-1">
-                        <NavigationLink href="/" className="inline-block mb-4">
-                            <Image src="/vendure.svg" alt="Vendure" width={40} height={27} className="h-6 w-auto dark:invert" />
+                    <div className="md:col-span-1 space-y-4">
+                        <NavigationLink href="/" className="inline-block">
+                            <BrandLogo size="md" />
                         </NavigationLink>
                         <p className="text-sm text-muted-foreground text-balance leading-relaxed">
                             {t('description')}
@@ -132,25 +132,10 @@ export async function Footer() {
                 <div
                     className="mt-12 pt-8 border-t border-border flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-muted-foreground">
                     <Copyright/>
-                    <div className="flex items-center gap-2">
-                        <span>{t('poweredBy')}</span>
-                        <a
-                            href="https://vendure.io"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="hover:text-foreground transition-colors"
-                        >
-                            <Image src="/vendure.svg" alt="Vendure" width={40} height={27} className="h-4 w-auto dark:invert" />
-                        </a>
-                        <span>&</span>
-                        <a
-                            href="https://nextjs.org"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="hover:text-foreground transition-colors"
-                        >
-                            <Image src="/next.svg" alt="Next.js" width={16} height={16} className="h-5 w-auto dark:invert" />
-                        </a>
+                    <div className="flex items-center gap-2 text-xs text-muted-foreground/80 font-serif italic">
+                        <span>Handcrafted with passion in Venice</span>
+                        <span>•</span>
+                        <span>Julia di Venezia Atelier</span>
                     </div>
                 </div>
             </div>

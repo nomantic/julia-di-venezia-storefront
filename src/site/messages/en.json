@@ -2,22 +2,22 @@
   "NotFound": {
     "title": "Page Not Found",
     "message": "The page you are looking for does not exist, has been moved, or is temporarily unavailable.",
-    "goHome": "Go to Home",
-    "browseProducts": "Browse Products",
+    "goHome": "Return to Gallery",
+    "browseProducts": "Explore All Artworks",
     "popularCollections": "Popular Collections"
   },
   "Footer": {
-    "description": "A modern, headless e-commerce storefront built with Vendure and Next.js. Fast, flexible, and ready for production.",
-    "categories": "Categories",
-    "customer": "Customer",
-    "shopAll": "Shop All",
+    "description": "Original paintings, romantic botanical illustrations, and fine art prints handcrafted with love and inspired by the ethereal light of Venice.",
+    "categories": "Collections",
+    "customer": "Customer Care",
+    "shopAll": "All Artwork",
     "orders": "Orders",
-    "account": "Account",
-    "vendure": "Vendure",
-    "github": "GitHub",
-    "documentation": "Documentation",
-    "sourceCode": "Source Code",
-    "copyright": "Vendure Store. All rights reserved.",
-    "poweredBy": "Powered by"
+    "account": "My Account",
+    "vendure": "About The Artist",
+    "github": "Instagram",
+    "documentation": "Collector Guide",
+    "sourceCode": "Studio Journal",
+    "copyright": "Julia di Venezia. All rights reserved.",
+    "poweredBy": "Created with"
   }
 }

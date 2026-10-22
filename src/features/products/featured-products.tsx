@@ -3,7 +3,7 @@ import {getRouteLocale} from "@/platform/i18n/server";
 import {cacheLife, cacheTag} from "next/cache";
 import {getActiveCurrencyCode} from '@/features/currency/currency-server';
 import {query} from "@/platform/vendure/api";
-import {GetCollectionProductsQuery} from '@/features/collections/graphql';
+import {SearchProductsQuery} from '@/features/search/graphql';
 import { Link } from '@/platform/i18n/navigation';
 import {ArrowRight} from "lucide-react";
 import {getTranslations} from 'next-intl/server';
@@ -29,19 +29,16 @@ async function getFeaturedCollectionProducts(currencyCode: string) {
     cacheTag(`featured-${locale}-${currencyCode}`);
     cacheTag('products');
 
-    // Fetch featured products from a specific collection
-    // Replace 'featured' with your actual collection slug
-    const result = await query(GetCollectionProductsQuery, {
-        slug: "electronics",
+    // Fetch featured products from the gallery
+    const result = await query(SearchProductsQuery, {
         input: {
-            collectionSlug: "electronics",
             take: 12,
             skip: 0,
             groupByProduct: true
         }
     }, {languageCode: locale, currencyCode});
 
-    return result.data.search.items;
+    return result.data?.search?.items ?? [];
 }
 
 
