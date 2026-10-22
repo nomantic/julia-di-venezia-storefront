@@ -1,7 +1,7 @@
 'use client';
 
 import {useState} from 'react';
-import {NavigationLink} from '@/site/navigation/navigation-link';
+import { Link } from '@/platform/i18n/navigation';
 import {ChevronDown, Sparkles, ArrowRight} from 'lucide-react';
 import {Button} from '@/components/ui/button';
 import {
@@ -28,12 +28,12 @@ export function CollectionsNav({collections}: CollectionsNavProps) {
 
     return (
         <div className="flex items-center gap-1 lg:gap-2">
-            <NavigationLink
+            <Link
                 href="/search"
                 className="text-sm font-medium text-foreground/80 hover:text-primary transition-colors px-3 py-1.5 rounded-full hover:bg-secondary/60"
             >
                 Gallery
-            </NavigationLink>
+            </Link>
 
             {collections.length > 0 && (
                 <DropdownMenu open={open} onOpenChange={setOpen}>
@@ -65,7 +65,7 @@ export function CollectionsNav({collections}: CollectionsNavProps) {
                         {collections.map((collection) => (
                             <DropdownMenuItem
                                 key={collection.slug}
-                                render={<NavigationLink href={`/collection/${collection.slug}`} />}
+                                render={<Link href={`/collection/${collection.slug}`} />}
                                 className="cursor-pointer py-2 px-2.5 rounded-lg hover:bg-secondary/60 hover:text-primary transition-colors text-sm flex items-center gap-2"
                                 onClick={() => setOpen(false)}
                             >
@@ -75,7 +75,7 @@ export function CollectionsNav({collections}: CollectionsNavProps) {
                         ))}
                         <DropdownMenuSeparator />
                         <DropdownMenuItem
-                            render={<NavigationLink href="/search" />}
+                            render={<Link href="/search" />}
                             className="cursor-pointer py-1.5 px-2.5 rounded-lg hover:bg-secondary/60 text-primary text-xs font-medium flex items-center justify-between"
                             onClick={() => setOpen(false)}
                         >
