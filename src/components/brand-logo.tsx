@@ -11,17 +11,17 @@ export function BrandLogo({ className = '', showSubtitle = true, size = 'md' }: 
     const isLg = size === 'lg';
 
     return (
-        <div className={`inline-flex items-center gap-2.5 group select-none ${className}`}>
+        <div className={`inline-flex items-center gap-2 group select-none shrink-0 ${className}`}>
             {/* Elegant Art Emblem Icon */}
             <div className={`relative flex items-center justify-center shrink-0 rounded-full bg-gradient-to-tr from-primary/20 via-primary/10 to-accent/30 border border-primary/25 shadow-xs transition-transform duration-300 group-hover:scale-105 ${
-                isSm ? 'size-7' : isLg ? 'size-11' : 'size-9'
+                isSm ? 'size-7' : isLg ? 'size-11' : 'size-8 sm:size-9'
             }`}>
                 <svg
                     viewBox="0 0 24 24"
                     fill="none"
                     xmlns="http://www.w3.org/2000/svg"
                     className={`text-primary transition-colors duration-300 ${
-                        isSm ? 'size-3.5' : isLg ? 'size-5' : 'size-4.5'
+                        isSm ? 'size-3.5' : isLg ? 'size-5' : 'size-4 sm:size-4.5'
                     }`}
                 >
                     {/* Artistic Venetian Rose / Paint Palette Motif */}
@@ -47,12 +47,12 @@ export function BrandLogo({ className = '', showSubtitle = true, size = 'md' }: 
             {/* Typography */}
             <div className="flex flex-col text-left justify-center">
                 <span className={`font-serif tracking-wide text-foreground leading-none font-semibold ${
-                    isSm ? 'text-lg' : isLg ? 'text-2xl' : 'text-xl'
+                    isSm ? 'text-base' : isLg ? 'text-2xl' : 'text-base sm:text-xl'
                 }`}>
                     Julia di Venezia
                 </span>
                 {showSubtitle && (
-                    <span className="text-[9px] uppercase tracking-[0.26em] text-primary/80 font-medium font-sans mt-1">
+                    <span className="text-[8px] sm:text-[9px] uppercase tracking-[0.22em] sm:tracking-[0.26em] text-primary/80 font-medium font-sans mt-0.5 sm:mt-1 hidden min-[360px]:block">
                         Atelier d&apos;Art
                     </span>
                 )}
